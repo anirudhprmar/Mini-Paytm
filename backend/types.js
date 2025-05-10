@@ -3,7 +3,7 @@ import {z} from 'zod'
 export const signUpCheck = z.object({
     email:z.string().email(),
     password:z.string().min(3),
-    fullname:z.string().min(3).max(30),
+    firstname:z.string().min(3).max(30),
     lastname:z.string().min(3).max(30)
 })
 

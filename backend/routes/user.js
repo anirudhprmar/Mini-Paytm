@@ -1,9 +1,9 @@
 import express from 'express'
-import { signUpCheck, signInCheck, updateUserInfo } from '../types'
+import { signUpCheck, signInCheck, updateUserInfo } from '../types.js'
 import { Account, User } from '../db.js'
-import JWT_SECRET from '../config'
+import JWT_SECRET from '../config.js'
 import jwt from 'jsonwebtoken'
-import authMiddleware from '../middleware'
+import authMiddleware from '../middleware.js'
 
 const router = express.Router()
 
@@ -28,9 +28,9 @@ router.post('/signup',async(req,res)=>{
        }
    
        const dbUser = await User.create({
-         username:req.body.username,
+         email:req.body.email,
          password:req.body.password,
-         fullname:req.body.fullname,
+         firstname:req.body.firstname,
          lastname:req.body.lastname
        })
 
@@ -65,7 +65,7 @@ router.post('/signup',async(req,res)=>{
 
 })
 
-router.post('/signing',async(req,res)=>{
+router.post('/signin',async(req,res)=>{
  try {
        const validatedData = signInCheck.safeParse(req.body)
 
@@ -142,7 +142,7 @@ const users = await User.find({
 
 res.json({
     user: users.map(user =>({
-        username:user.username,
+        email:user.email,
         firstname:user.firstname,
         lastname:user.lastname,
         _id:user._id

@@ -6,7 +6,7 @@ import mainRouter from './routes/index.js'
 const app = express()
 
 app.use(cors({
-    origin:"http://localhost:5173/"
+    origin:"http://localhost:5173"
 }))
 app.use(express.json());
 
@@ -14,10 +14,9 @@ dotenv.config()
 
 
 app.use('/api/v1',mainRouter)
-app.use('/api/v1/user',mainRouter)
 
-const PORT = process.env.PORT
-app.listen(()=>{
+const PORT = process.env.PORT || 3000
+app.listen(PORT,()=>{
     console.log(`Listening on port: ${PORT}`);
 })
 

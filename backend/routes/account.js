@@ -1,8 +1,8 @@
 import express from 'express'
-import authMiddleware from '../middleware'
-import { Account } from '../db'
+import authMiddleware from '../middleware.js'
+import { Account } from '../db.js'
 import mongoose from 'mongoose'
-import { validateTransaction } from '../types';
+import { validateTransaction } from '../types.js';
 
 const router = express.Router();
 
@@ -24,7 +24,7 @@ router.get('/balance',authMiddleware,async (req,res)=>{
 
 })
 
-router.post('/transfer',authMiddleware,async()=>{
+router.post('/transfer',authMiddleware,async(req,res)=>{
   try {
     const session = await mongoose.startSession();
 
@@ -88,3 +88,6 @@ router.post('/transfer',authMiddleware,async()=>{
   }
 
 })
+
+
+export default router
